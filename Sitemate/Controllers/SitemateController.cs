@@ -20,7 +20,7 @@ namespace Sitemate.Controllers
             _issueRepository = issueRepository;
         }
 
-        // GET: Sitemate
+        // GET: Sitemate/GetAll
         [Route("GetAll")]
         [HttpGet]
         public ActionResult<IEnumerable<Issue>> GetIssues()
@@ -29,7 +29,7 @@ namespace Sitemate.Controllers
             return Ok(issues);
         }
 
-        // GET: Sitemate/5
+        // GET: Sitemate/GetById/5
         [Route("GetById")]
         [HttpGet("{id}")]
         public ActionResult<Issue> GetIssue(int id)
@@ -44,7 +44,7 @@ namespace Sitemate.Controllers
             return Ok(issue);
         }
 
-        // POST: Sitemate
+        // POST: Sitemate/Add
         [Route("Add")]
         [HttpPost]
         public ActionResult<Issue> PostIssue(Issue issue)
