@@ -20,18 +20,16 @@ namespace Sitemate.Controllers
             _issueRepository = issueRepository;
         }
 
-        // GET: Sitemate/GetAll
-        [Route("GetAll")]
-        [HttpGet]
+        // GET: Sitemate/GetAll        
+        [HttpGet("GetAll")]
         public ActionResult<IEnumerable<Issue>> GetIssues()
         {
             var issues = _issueRepository.GetAll(); // Assumes GetAll method exists
             return Ok(issues);
         }
 
-        // GET: Sitemate/GetById/5
-        [Route("GetById")]
-        [HttpGet("{id}")]
+        // GET: Sitemate/GetById/5        
+        [HttpGet("GetById/{id}")]
         public ActionResult<Issue> GetIssue(int id)
         {
             var issue = _issueRepository.Get(id);
@@ -44,18 +42,16 @@ namespace Sitemate.Controllers
             return Ok(issue);
         }
 
-        // POST: Sitemate/Add
-        [Route("Add")]
-        [HttpPost]
-        public ActionResult<Issue> PostIssue(Issue issue)
+        // POST: Sitemate/Add        
+        [HttpPost("Add")]
+        public ActionResult<Issue> PostIssue([FromBody] Issue issue)
         {
             _issueRepository.Add(issue);
             return CreatedAtAction(nameof(GetIssue), new { id = issue.Id }, issue);
         }
 
-        // PUT: Sitemate/Update/5
-        [Route("Update")]
-        [HttpPut("{id}")]
+        // PUT: Sitemate/Update/5        
+        [HttpPut("Update/{id}")]
         public IActionResult PutIssue(int id, Issue issue)
         {
             if (id != issue.Id)
@@ -67,9 +63,8 @@ namespace Sitemate.Controllers
             return NoContent();
         }
 
-        // DELETE: Sitemate/Delete/5
-        [Route("Delete")]
-        [HttpDelete("{id}")]
+        // DELETE: Sitemate/Delete/5        
+        [HttpDelete("Delete/{id}")]
         public IActionResult DeleteIssue(int id)
         {
             var existingIssue = _issueRepository.Get(id);

@@ -48,8 +48,9 @@ function IssuesViewModel() {
 
     // Delete an issue
     self.deleteIssue = function (issue) {
+        debugger;
         $.ajax({
-            url: '/Sitemate/Delete' + issue.id,
+            url: '/Sitemate/Delete/' + issue.id,
             method: 'DELETE',
             success: function () {
                 self.fetchIssues();

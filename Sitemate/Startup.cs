@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sitemate.Models;
+using Sitemate.Repository;
 using System;
 
 namespace Sitemate
@@ -27,6 +28,12 @@ namespace Sitemate
                     new MySqlServerVersion(new Version(5, 5, 62)))
             );
             services.AddRazorPages();
+
+            // Register SitemateRepository with a specific type
+            services.AddScoped(typeof(SitemateRepository<Issue>), typeof(SitemateRepository<Issue>));
+
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +60,7 @@ namespace Sitemate
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
