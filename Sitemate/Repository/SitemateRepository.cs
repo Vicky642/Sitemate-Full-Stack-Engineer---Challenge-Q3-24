@@ -14,7 +14,7 @@ namespace Sitemate.Repository
 
         public SitemateRepository(SitemateContext context)
         {
-            _context = context;
+            _context = context; 
             _dbSet = _context.Set<T>();
         } 
 
