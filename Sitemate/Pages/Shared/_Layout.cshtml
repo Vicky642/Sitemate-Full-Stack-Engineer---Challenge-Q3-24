@@ -3,47 +3,36 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Sitemate</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - Sitemate</title>   
+    
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Sitemate</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto flex items-center justify-between p-6">
+            <a href="/" class="text-3xl font-bold text-gray-800">Sitemate</a>
+            <div class="flex space-x-6">
+                <a href="/" class="text-gray-700 hover:text-gray-900 transition duration-300">Home</a>
+                <a href="#" class="text-gray-700 hover:text-gray-900 transition duration-300">Privacy</a>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Sitemate - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <main class="container mx-auto p-6">
+        @RenderBody()
+    </main>
+
+
+    <footer class="bg-white border-t border-gray-200 py-6">
+        <div class="container mx-auto text-center text-gray-600">
+            &copy; 2024 - Sitemate - <a href="/Privacy" class="text-blue-600 hover:underline transition duration-300">Privacy</a>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <script src="~/js/issues.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

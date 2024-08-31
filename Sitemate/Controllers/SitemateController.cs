@@ -21,6 +21,7 @@ namespace Sitemate.Controllers
         }
 
         // GET: Sitemate
+        [Route("GetAll")]
         [HttpGet]
         public ActionResult<IEnumerable<Issue>> GetIssues()
         {
@@ -29,6 +30,7 @@ namespace Sitemate.Controllers
         }
 
         // GET: Sitemate/5
+        [Route("GetById")]
         [HttpGet("{id}")]
         public ActionResult<Issue> GetIssue(int id)
         {
@@ -43,6 +45,7 @@ namespace Sitemate.Controllers
         }
 
         // POST: Sitemate
+        [Route("Add")]
         [HttpPost]
         public ActionResult<Issue> PostIssue(Issue issue)
         {
@@ -50,7 +53,8 @@ namespace Sitemate.Controllers
             return CreatedAtAction(nameof(GetIssue), new { id = issue.Id }, issue);
         }
 
-        // PUT: Sitemate/5
+        // PUT: Sitemate/Update/5
+        [Route("Update")]
         [HttpPut("{id}")]
         public IActionResult PutIssue(int id, Issue issue)
         {
@@ -63,7 +67,8 @@ namespace Sitemate.Controllers
             return NoContent();
         }
 
-        // DELETE: Sitemate/5
+        // DELETE: Sitemate/Delete/5
+        [Route("Delete")]
         [HttpDelete("{id}")]
         public IActionResult DeleteIssue(int id)
         {
