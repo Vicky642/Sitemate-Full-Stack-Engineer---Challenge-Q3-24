@@ -12,7 +12,7 @@ function IssuesViewModel() {
     // Fetch issues from the server
     self.fetchIssues = function () {
         $.ajax({
-            url: '/Sitemate',
+            url: '/Sitemate/GetAll',
             method: 'GET',
             success: function (data) {
                 self.issues(data);
@@ -31,7 +31,7 @@ function IssuesViewModel() {
         };
 
         $.ajax({
-            url: '/Sitemate',
+            url: '/Sitemate/Add',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(newIssue),
@@ -49,7 +49,7 @@ function IssuesViewModel() {
     // Delete an issue
     self.deleteIssue = function (issue) {
         $.ajax({
-            url: '/Sitemate/' + issue.id,
+            url: '/Sitemate/Delete' + issue.id,
             method: 'DELETE',
             success: function () {
                 self.fetchIssues();
