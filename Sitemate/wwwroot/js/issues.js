@@ -8,6 +8,8 @@ function IssuesViewModel() {
     self.newIssueTitle = ko.observable('');
     self.newIssueDescription = ko.observable('');
     self.issues = ko.observableArray([]);
+    self.selectedIssue = ko.observable(null); // To store the issue being edited
+    self.searchId = ko.observable(''); // To store the ID for searching
 
     // Fetch issues from the server
     self.fetchIssues = function () {
@@ -59,6 +61,54 @@ function IssuesViewModel() {
                 console.error('Error deleting issue:', error);
             }
         });
+    };
+
+    // Update an existing issue
+    self.updateIssue = function () {
+        var issue = self.selectedIssue();
+        if (issue) {
+            var updatedIssue = {
+                id: issue.id,
+                title: self.newIssueTitle(),
+                description: self.newIssueDescription()
+            };
+
+            $.ajax({
+                url: '/Sitemate/Update/' + issue.id,
+                method: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(updatedIssue),
+                success: function () {
+                    self.fetchIssues();
+                    self.newIssueTitle('');
+                    self.newIssueDescription('');
+                    self.selectedIssue(null); // Clear the selected issue after updating
+                },
+                error: function (error) {
+                    console.error('Error updating issue:', error);
+                }
+            });
+        }
+    };
+
+
+    // Search for an issue by ID
+    self.searchIssueById = function () {
+        var id = self.searchId();
+        if (id) {
+            $.ajax({
+                url: '/Sitemate/GetById/' + id,
+                method: 'GET',
+                success: function (data) {
+                    self.selectedIssue(data);
+                    self.newIssueTitle(data.title);
+                    self.newIssueDescription(data.description);
+                },
+                error: function (error) {
+                    console.error('Error searching issue by ID:', error);
+                }
+            });
+        }
     };
 
     // Initial fetch of issues
